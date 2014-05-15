@@ -7,7 +7,7 @@ log4js.configure
     { type: 'file', filename: 'logs/first.log', category: 'first' }
   ]
 logger = log4js.getLogger 'first'
-logger.setLevel 'INFO'
+logger.setLevel 'DEBUG'
 
 logger.debug 'start'
 
@@ -32,10 +32,16 @@ app.get '/', (req, res) ->
   res.header 'Access-Control-Allow-Headers', 'Content-Type'
 
   {username, password} = req.query
+  # logger.debug req.query
+  # logger.debug ["username?", username?]
+  # logger.debug ["config.users[username]?", config.users[username]?]
+  # logger.debug ["config.users", config.users]
+  # logger.debug ["config.users[username].password", config.users[username].password]
+  # logger.debug ["password", password]
   if username? and config.users[username]?
     if config.users[username].password is password
       delete req.query.password
-      logger.info JSON.stringify(req.query)
+      logger.debug JSON.stringify(req.query)
       res.send "Hello World"
       return
   res.send "Are you kidding?"
