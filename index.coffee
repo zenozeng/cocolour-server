@@ -16,7 +16,21 @@ config = JSON.parse config
 
 app = require('express')()
 
+app.options "*", (req, res) ->
+  res.header 'Access-Control-Allow-Origin', '*'
+  res.header 'Access-Control-Allow-Credentials', true
+  # try: 'POST, GET, PUT, DELETE, OPTIONS'
+  res.header 'Access-Control-Allow-Methods', 'GET, OPTIONS'
+  # try: 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept'
+  res.header 'Access-Control-Allow-Headers', 'Content-Type'
+
 app.get '/', (req, res) ->
+
+  res.header 'Access-Control-Allow-Origin', '*'
+  res.header 'Access-Control-Allow-Credentials', true
+  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS'
+  res.header 'Access-Control-Allow-Headers', 'Content-Type'
+
   {user, password} = req.query
   if user? and config.users[user]?
     if config.users[user].password is password
