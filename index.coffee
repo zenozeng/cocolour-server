@@ -31,10 +31,9 @@ app.get '/', (req, res) ->
   res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS'
   res.header 'Access-Control-Allow-Headers', 'Content-Type'
 
-  {user, password} = req.query
-  if user? and config.users[user]?
-    if config.users[user].password is password
-      delete req.query.user
+  {username, password} = req.query
+  if username? and config.users[username]?
+    if config.users[username].password is password
       delete req.query.password
       logger.info JSON.stringify(req.query)
       res.send "Hello World"
