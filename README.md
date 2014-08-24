@@ -1,15 +1,7 @@
 # cocolour-server
 
-Still coding.
+**Note: This repository is no longer maintained. Cocolour now uses AVOS Cloud.**
 
-## Deploy
-
-```
-sudo apt-get install couchdb
-```
-
-## FAQ
-
-### Why CouchDB
+## Why CouchDB
 
 http://docs.couchdb.org/en/latest/intro/why.html
